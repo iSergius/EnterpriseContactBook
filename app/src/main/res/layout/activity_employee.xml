@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_employee"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<!--    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar" />-->
+
+    <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+        android:id="@+id/employee_info">
+
+
+        <RelativeLayout
+            android:layout_width="96dp"
+            android:layout_height="128dp"
+            android:id="@+id/employee_photo_container">
+
+            <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/employee_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="false"
+                app:srcCompat="@drawable/portreat" />
+        </RelativeLayout>
+
+        <TextView
+                    android:id="@+id/position_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/text_margin"
+                    android:layout_marginTop="@dimen/text_margin"
+                    android:layout_toEndOf="@+id/employee_photo_container"
+                    android:layout_toRightOf="@+id/employee_photo"
+                    android:text="@string/position_label"
+                    android:textSize="12sp"
+            android:fontFamily="Robo regular" />
+
+                <TextView
+                    android:id="@+id/position_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/position_label"
+                    android:layout_alignStart="@+id/position_label"
+                    android:layout_below="@+id/position_label"
+                    android:textSize="16sp"
+                    android:fontFamily="Robo Regular"
+                    android:text="Position Employee" />
+
+                <TextView
+                    android:id="@+id/name_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/position_title"
+                    android:layout_marginLeft="@dimen/text_margin"
+                    android:layout_marginTop="@dimen/text_margin"
+                    android:layout_toEndOf="@+id/employee_photo_container"
+                    android:layout_toRightOf="@+id/employee_photo_container"
+                    android:text="@string/name_label"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/name_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/position_label"
+                    android:layout_alignStart="@+id/position_label"
+                    android:layout_below="@+id/name_label"
+                    android:textSize="16sp"
+                    android:text="Employee Name"
+                    android:fontFamily="Roboto Regular" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/contact_list"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/text_margin"
+        android:headerDividersEnabled="true" />
+
+
+</LinearLayout>
+
+
+

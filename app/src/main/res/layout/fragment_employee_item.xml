@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:layout_centerVertical="false"
+    android:id="@+id/fragment_employee_item"
+    android:layout_height="72dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/fragment_employee_item_name_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Employee Name"
+        android:textSize="16sp"
+        android:textColor="?android:attr/textColorPrimary"
+        />
+
+    <TextView
+        android:id="@+id/fragment_employee_item_position_title"
+        android:layout_width="match_parent"
+        android:text="Employee Position"
+        android:textSize="14sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_employee_item_name_title"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

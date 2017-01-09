@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Enterprise Contact Book</string>
+
+    <string name="login">Войти</string>
+    <string name="password">Парооль</string>
+    <string name="username">Имя пользователя</string>
+
+    <string name="log_out">Выйти</string>
+    <string name="employee_list_activity_label">Организация</string>
+    <string name="employee_activity_label">Сотрудник</string>
+    <string name="position_label">Должность</string>
+    <string name="name_label">ФИО</string>
+    <string name="contact_server_unavalable">Сервер недоступен</string>
+    <string name="wrong_username">Не верное имя пользователя либо пароль</string>
+    <string name="username_validation_error">Имя пользователя должно состоять только из букв латинского алфавита</string>
+    <string name="password_validation_error">Пароль должен быть длинней 4-х символов</string>
+</resources>

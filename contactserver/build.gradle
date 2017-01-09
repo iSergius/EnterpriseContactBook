@@ -1,0 +1,20 @@
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'org.springframework.boot:spring-boot-starter-web:1.4.3.RELEASE'
+//    compile 'org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.4.3.RELEASE'
+    compile 'com.h2database:h2'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+
+
