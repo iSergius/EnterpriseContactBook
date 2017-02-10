@@ -1,5 +1,6 @@
 package name.isergius.android.task.maxim.enterprisecontactbook.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -11,8 +12,10 @@ import java.io.Serializable;
 public class Message implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @JsonProperty("Message")
     @SerializedName(value = "message", alternate = {"Message"})
     private String message;
+    @JsonProperty("Success")
     @SerializedName(value = "success", alternate = {"Success"})
     private boolean success;
 

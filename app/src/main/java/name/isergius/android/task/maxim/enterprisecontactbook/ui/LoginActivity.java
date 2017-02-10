@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.initPreferences();
+//        this.initPreferences();
         this.createServices();
         this.createUiComponents();
     }
@@ -126,10 +126,10 @@ public class LoginActivity extends AppCompatActivity {
         private EditText view = (EditText) findViewById(R.id.username);
 
         boolean isValid() {
-            if (!view.getText().toString().matches("[A-Z,a-z]+")) {
+            /*if (!view.getText().toString().matches("[A-Z,a-z]+")) {
                 view.setError(getString(R.string.username_validation_error));
                 return false;
-            }
+            }*/
             return true;
         }
 

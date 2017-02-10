@@ -6,12 +6,4 @@
     android:layout_height="match_parent"
     tools:context="name.isergius.android.task.maxim.enterprisecontactbook.ui.EmployeeListActivity"
     android:orientation="vertical">
-
-    <ExpandableListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/organization_tree" />
-
 </LinearLayout>

@@ -1,9 +1,10 @@
 package name.isergius.android.task.maxim.enterprisecontactbook.services;
 
-import java.util.List;
+import org.json.JSONObject;
 
 import name.isergius.android.task.maxim.enterprisecontactbook.model.Message;
-import name.isergius.android.task.maxim.enterprisecontactbook.model.Employee;
+import name.isergius.android.task.maxim.enterprisecontactbook.model.Node;
+import name.isergius.android.task.maxim.enterprisecontactbook.model.Organization;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -19,7 +20,7 @@ public interface ContactsApi {
     Call<Message> check(@Query("login") String username, @Query("password") String pass);
 
     @GET("GetAll")
-    Call<List<Employee>> getAll(@Query("login") String username, @Query("password") String pass);
+    Call<Node> getAll(@Query("login") String username, @Query("password") String pass);
 
     @GET("GetWPhoto")
     Call<ResponseBody> getPhoto(@Query("login") String username, @Query("password") String pass, @Query("id") long id);

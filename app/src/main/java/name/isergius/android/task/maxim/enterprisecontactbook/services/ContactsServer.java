@@ -2,16 +2,19 @@ package name.isergius.android.task.maxim.enterprisecontactbook.services;
 
 import android.content.SharedPreferences;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+
 import java.io.IOException;
 import java.io.InterruptedIOException;
-import java.util.List;
 
 import name.isergius.android.task.maxim.enterprisecontactbook.model.Message;
 import name.isergius.android.task.maxim.enterprisecontactbook.model.Credentials;
-import name.isergius.android.task.maxim.enterprisecontactbook.model.Employee;
+import name.isergius.android.task.maxim.enterprisecontactbook.model.Node;
+import name.isergius.android.task.maxim.enterprisecontactbook.model.Organization;
 import okhttp3.HttpUrl;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 /**
  * Created by isergius on 06.01.17.
@@ -37,11 +40,14 @@ public class ContactsServer {
         HttpUrl url = new HttpUrl.Builder()
                 .scheme(preferences.getString(PROTOCOL, "https"))
                 .host(preferences.getString(HOST, "contact.taxsee.com"))
-                .port(preferences.getInt(PORT, 80))
+                .port(preferences.getInt(PORT, 443))
                 .addPathSegments(preferences.getString(PATH, "Contacts.svc"))
                 .build();
+        ObjectMapper objectMapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule("Node deserializer").addDeserializer(Node.class, new NodeDeserializer());
+        objectMapper.registerModule(module);
         Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(JacksonConverterFactory.create(objectMapper))
                 .baseUrl(url + "/")
                 .build();
         contactsApi = retrofit.create(ContactsApi.class);
@@ -54,7 +60,7 @@ public class ContactsServer {
                 .body();
     }
 
-        public List<Employee> getAll() throws IOException {
+    public Node getAll() throws IOException {
         try {
             Credentials credentials = credentialsDao.read();
             return contactsApi

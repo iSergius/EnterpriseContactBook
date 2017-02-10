@@ -8,18 +8,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import name.isergius.android.task.maxim.enterprisecontactbook.R;
 import name.isergius.android.task.maxim.enterprisecontactbook.model.Contact;
 import name.isergius.android.task.maxim.enterprisecontactbook.model.Employee;
+import name.isergius.android.task.maxim.enterprisecontactbook.model.Node;
 import name.isergius.android.task.maxim.enterprisecontactbook.services.ContactsServer;
 import name.isergius.android.task.maxim.enterprisecontactbook.ui.components.AuthService;
 import name.isergius.android.task.maxim.enterprisecontactbook.ui.components.ContactIntentBuilder;
@@ -51,11 +55,11 @@ public class EmployeeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee);
-        employee = (Employee) getIntent().getExtras().get("employee");
+        employee = (Employee) getIntent().getExtras().get(Employee.TYPE);
         photo = new Photo();
-        position = new Position(employee.getPosition());
+        position = new Position(employee.getTitle());
         name = new Name(employee.getName());
-        contactList = new ContactList(employee.getContacts());
+        contactList = new ContactList(employee);
         authService = new AuthService();
         mainMenu = new MainMenu(authService);
         photoContainer = new PhotoContainer();
@@ -70,7 +74,13 @@ public class EmployeeActivity extends AppCompatActivity {
                 .commit();
         task = new ImageLoadingTask(progress, photo);
         task.execute(employee.getId());
+        overridePendingTransition(android.R.anim.slide_out_right,android.R.anim.slide_in_left);
+    }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
     }
 
     @Override
@@ -133,11 +143,10 @@ public class EmployeeActivity extends AppCompatActivity {
         private AppCompatImageView view = (AppCompatImageView) findViewById(R.id.employee_photo);
 
         void show(byte[] photo) {
-            if (photo != null) {
-                view.setBackgroundDrawable(null);
+            if (photo != null & photo.length != 0) {
                 view.setImageBitmap(BitmapFactory.decodeByteArray(photo, 0, photo.length));
             } else {
-
+                view.setImageResource(R.drawable.portreat);
             }
         }
 
@@ -175,8 +184,8 @@ public class EmployeeActivity extends AppCompatActivity {
     private class ContactList {
         private ListView view = (ListView) findViewById(R.id.contact_list);
 
-        ContactList(List<Contact> contacts) {
-            view.setAdapter(new ContactListViewAdapter(contacts));
+        ContactList(Employee employee) {
+            view.setAdapter(new ContactListViewAdapter(employee));
         }
 
         private class ContactListener implements View.OnClickListener {
@@ -199,6 +208,7 @@ public class EmployeeActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+
                 startActivity(intentBuilder.build());
             }
         }
@@ -206,8 +216,8 @@ public class EmployeeActivity extends AppCompatActivity {
         private class ContactListViewAdapter extends BaseAdapter {
             private List<Contact> contacts;
 
-            ContactListViewAdapter(List<Contact> contacts) {
-                this.contacts = contacts;
+            ContactListViewAdapter(Employee employee) {
+                this.contacts = employee.getContacts();
             }
 
             @Override

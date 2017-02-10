@@ -108,7 +108,7 @@ public class AuthService extends Fragment implements Serializable {
             try {
                 return server.check(credentials[0]);
             } catch (IOException e) {
-
+                e.printStackTrace();
             }
             return null;
         }

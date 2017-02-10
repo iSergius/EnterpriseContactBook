@@ -1,50 +1,32 @@
 package name.isergius.android.task.maxim.enterprisecontactbook.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by isergius on 30.12.16.
  */
+public class Department extends Node implements Serializable {
 
-public class Department implements Serializable {
+    public static final String TYPE = "Department";
 
     private static final long serialVersionUID = 4L;
 
-    private long id;
-    private String title;
-    private List<Employee> employees = new ArrayList<Employee>();
+    @JsonProperty("Employees")
+    private List<Employee> employees = Collections.EMPTY_LIST;
 
-    public Department() {}
-
-    public Department(long id, String title, List<Employee> employees) {
-        this.id = id;
-        this.title = title;
-        this.employees = employees;
+    public Department() {
     }
 
-    public long getId() {
-        return id;
+    public Department(long id, String name) {
+        super(id, name);
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
+    public Department(long id, String name, List<Employee> employees) {
+        this(id, name);
         this.employees = employees;
     }
 
@@ -56,33 +38,33 @@ public class Department implements Serializable {
         return employees.get(id);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Department that = (Department) o;
-
-        if (id != that.id) return false;
-        if (!title.equals(that.title)) return false;
-        return employees != null ? employees.equals(that.employees) : that.employees == null;
-
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + title.hashCode();
-        result = 31 * result + (employees != null ? employees.hashCode() : 0);
-        return result;
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 
     @Override
     public String toString() {
-        return "Department{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", employees=" + employees +
-                '}';
+        return "\nDepartment{" + super.toString() +
+                "employees=" + employees +
+                "} \n";
+    }
+
+    @Override
+    public int countItems() {
+        return employees.size();
+    }
+
+    @Override
+    public Node getItem(int id) {
+        return employees.get(id);
+    }
+
+    @Override
+    public String type() {
+        return TYPE;
     }
 }

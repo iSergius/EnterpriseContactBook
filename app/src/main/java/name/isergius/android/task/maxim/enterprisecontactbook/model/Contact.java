@@ -2,6 +2,7 @@ package name.isergius.android.task.maxim.enterprisecontactbook.model;
 
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by isergius on 30.12.16.
@@ -9,13 +10,16 @@ import java.io.Serializable;
 
 public class Contact implements Serializable {
 
+    public static final String TYPE = "Contact";
+
     private static final long serialVersionUID = 2L;
 
     private long id;
     private String value;
     private String type;
 
-    public Contact() {}
+    public Contact() {
+    }
 
     public Contact(int id, String value, String type) {
         this.id = id;
@@ -48,29 +52,11 @@ public class Contact implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Contact contact = (Contact) o;
-
-        if (id != contact.id) return false;
-        return value.equals(contact.value);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + value.hashCode();
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Contact{" +
                 "id=" + id +
                 ", value='" + value + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }
